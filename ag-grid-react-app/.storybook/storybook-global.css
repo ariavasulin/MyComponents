@@ -1,0 +1,10 @@
+/* Storybook specific AG-Grid theme overrides */
+.ag-theme-quartz {
+    --ag-background-color: #2e2e2e;
+    --ag-foreground-color: white;
+    /* Add other variables if needed for better contrast, e.g., borders */
+    --ag-border-color: #555; /* Example: Adjust border for visibility */
+    --ag-header-background-color: #3a3a3a; /* Example: Darker header */
+    --ag-odd-row-background-color: #333333; /* Example: Slightly different odd row */
+    --ag-row-hover-color: #444444; /* Example: Hover color */
+}

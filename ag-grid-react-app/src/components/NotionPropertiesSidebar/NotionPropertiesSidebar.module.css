@@ -1,0 +1,90 @@
+/* Styles for NotionPropertiesSidebar */
+
+.sidebarContainer {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Match Notion's typical font stack */
+  background-color: #2e2e2e; /* Dark background */
+  color: #ffffff !important; /* Default text color to white - Added !important */
+}
+
+.title {
+  font-weight: 600; /* Semibold */
+  font-size: 0.875rem; /* 14px */
+  color: #ffffff !important; /* White title - Added !important */
+  margin-bottom: 16px; /* Spacing below title - Kept for space between title and list */
+}
+
+.propertyList {
+  /* MUI List handles basic structure */
+  /* Padding adjusted in sx prop */
+}
+
+.propertyItem {
+  display: flex; /* Use flex for alignment */
+  align-items: flex-start; /* Align items to the top */
+  padding: 4px 0; /* Vertical padding */
+  /* margin-bottom: 8px; Removed margin-bottom */
+}
+
+.propertyIcon {
+  min-width: 24px !important; /* Ensure consistent icon spacing */
+  margin-top: 2px; /* Align icon slightly better with first line of text */
+  margin-right: 6px; /* Space between icon and text */
+  color: rgba(255, 255, 255, 0.7) !important; /* Lighter gray icon on dark background - Added !important */
+}
+
+.propertyLabel {
+  font-size: 0.875rem; /* 14px */
+  color: rgba(255, 255, 255, 0.7) !important; /* Lighter gray for label - Added !important */
+  line-height: 1.4;
+  /* margin-bottom: 2px; Removed, spacing handled by line-height and item padding */
+  white-space: nowrap; /* Prevent label wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis if label is too long */
+  flex-shrink: 0; /* Prevent label from shrinking */
+  width: 150px; /* Increased width by 150% (100px * 1.5) */
+  margin-right: 8px; /* Space between label and value */
+}
+
+.propertyValue {
+  font-size: 0.875rem; /* 14px */
+  color: #ffffff !important; /* White for value - Added !important */
+  line-height: 1.4;
+  white-space: pre-wrap; /* Allow wrapping for long values like description */
+  word-break: break-word; /* Break long words */
+  flex-grow: 1; /* Allow value to take remaining space */
+  cursor: pointer; /* Indicate it's clickable for editing */
+}
+
+/* Specific styling for tag-like values will be added later */
+.propertyValueTag {
+  /* Placeholder */
+}
+
+/* Style for the input field when editing */
+.propertyValueInput input {
+    color: #ffffff !important; /* White text in input */
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter background for input */
+    padding: 4px 6px;
+    font-size: 0.875rem;
+    border-radius: 3px;
+    border: 1px solid transparent;
+}
+.propertyValueInput input:focus {
+    border: 1px solid #4a90e2; /* Blue border on focus */
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+
+.addButton {
+  /* Button styles remain but button is removed from component */
+  margin-top: 16px !important;
+  justify-content: flex-start !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-transform: none !important;
+  font-size: 0.875rem !important;
+  padding: 4px 8px !important;
+}
+
+.addButton:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
