@@ -25,6 +25,11 @@
 *   [2025-05-02 02:56:17] - Created basic Markdown rendering component (`MarkdownEditor.tsx` and `MarkdownEditor.stories.tsx`) using `react-markdown` and `remark-gfm`. Installed dependencies. (Replaced by MDXEditor)
 *   [2025-05-02 02:58:22] - Refactored `MarkdownEditor.tsx` and `MarkdownEditor.stories.tsx` to use `@mdxeditor/editor`. Installed dependency. Implemented basic Markdown editing toolbar and functionality.
 
+*   [2025-05-02 03:11:11] - Implemented nested collapsible menu functionality in `CollapsibleSidebar` using MUI `Collapse`, state for nested items, and updated rendering logic based on a hierarchical data structure.
+*   [2025-05-02 03:09:42] - Refactored `CollapsibleSidebar` toggle: Removed standalone button, consolidated toggle logic into the `DrawerHeader`'s `IconButton`. Updated `DrawerHeader` styles to center the icon (`justifyContent: 'center'`) when collapsed (`!open`) to fix alignment issue.
+*   [2025-05-02 03:08:34] - Further adjusted `CollapsibleSidebar`: Implemented explicit `display: open ? 'none' : 'inline-flex'` logic for the open (`MenuIcon`) button and `display: open ? 'inline-flex' : 'none'` for the close (`ChevronLeftIcon`) button to ensure only one is visible at a time, resolving the overlap issue.
+*   [2025-05-02 03:07:36] - Adjusted `CollapsibleSidebar`: Wrapped component in a Box with `minHeight: '100vh'` for full height and changed toggle button position to `fixed` to prevent overlap when collapsed. Fixed syntax errors from previous diff attempts.
+*   [2025-05-02 03:04:56] - Created basic CollapsibleSidebar component and story using MUI Drawer (`ag-grid-react-app/src/components/CollapsibleSidebar/`).
 ## Open Questions/Issues
 
 *

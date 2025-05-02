@@ -23,6 +23,8 @@ This file tracks the project's progress using a task list format.
 *   [2025-05-02 02:56:08] - Completed: Create basic Markdown rendering component (`MarkdownEditor.tsx`) and story (`MarkdownEditor.stories.tsx`) using `react-markdown`. Installed dependencies. (Note: Replaced by MDXEditor)
 *   [2025-05-02 02:58:11] - Completed: Refactor `MarkdownEditor` component and story to use `@mdxeditor/editor` providing basic Markdown editing capabilities. Installed dependency.
 
+*   [2025-05-02 03:04:44] - Completed: Created basic CollapsibleSidebar component (`CollapsibleSidebar.tsx`), Storybook story (`CollapsibleSidebar.stories.tsx`), and CSS module (`CollapsibleSidebar.module.css`) using Material UI Drawer.
+*   [2025-05-02 03:11:04] - Completed: Implemented nested, collapsible menu items in `CollapsibleSidebar` using MUI `Collapse` component and state management for nested item visibility. Updated data structure and rendering logic.
 ## Current Tasks
 
 *   [2025-05-02 02:28:43] - Implement Notion-style properties sidebar (Phase 2: Styling for High Fidelity).

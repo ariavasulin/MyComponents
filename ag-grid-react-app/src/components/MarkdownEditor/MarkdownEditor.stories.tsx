@@ -38,9 +38,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const defaultContent = `# Welcome to the MDX Editor!
+const defaultContent = `# Task Description
 
-This is a basic example using \`@mdxeditor/editor\`.
+This is a basic example 
 
 **Features:**
 
@@ -52,7 +52,6 @@ This is a basic example using \`@mdxeditor/editor\`.
 *   Thematic Breaks (horizontal rules)
 *   Markdown shortcuts (like \`#\` for headings, \`*\` for lists)
 
-Try editing this content! Changes are logged in the **Actions** tab below.
 `;
 
 export const Default: Story = {

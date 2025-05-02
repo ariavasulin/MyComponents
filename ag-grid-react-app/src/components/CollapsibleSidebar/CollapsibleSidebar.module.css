@@ -1,0 +1,10 @@
+/*
+ * CSS Module for CollapsibleSidebar component.
+ * Currently, styling is primarily handled by MUI's styled components and sx prop.
+ * This file can be used for additional component-specific styles or overrides.
+ */
+
+.root {
+    /* Example style */
+    /* border: 1px solid red; */
+}
