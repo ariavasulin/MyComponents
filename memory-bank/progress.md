@@ -25,6 +25,9 @@ This file tracks the project's progress using a task list format.
 
 *   [2025-05-02 03:04:44] - Completed: Created basic CollapsibleSidebar component (`CollapsibleSidebar.tsx`), Storybook story (`CollapsibleSidebar.stories.tsx`), and CSS module (`CollapsibleSidebar.module.css`) using Material UI Drawer.
 *   [2025-05-02 03:11:04] - Completed: Implemented nested, collapsible menu items in `CollapsibleSidebar` using MUI `Collapse` component and state management for nested item visibility. Updated data structure and rendering logic.
+*   [2025-05-03 02:30:06] - Completed: Created Storybook story `SamplePageLayout.stories.tsx` demonstrating `Header` and `CollapsibleSidebar` layout. Fixed import path error.
+*   [2025-05-04 14:10:49] - Completed: Create Chatbot component (Chatbot.tsx) and Storybook story (Chatbot.stories.tsx) using assistan-ui primitives for static display.
+*   [2025-05-04 14:16:18] - Completed: Updated Chatbot.tsx static mock component with inline styles to resemble ChatGPT light theme.
 ## Current Tasks
 
 *   [2025-05-02 02:28:43] - Implement Notion-style properties sidebar (Phase 2: Styling for High Fidelity).

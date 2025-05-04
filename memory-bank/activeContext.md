@@ -30,6 +30,8 @@
 *   [2025-05-02 03:08:34] - Further adjusted `CollapsibleSidebar`: Implemented explicit `display: open ? 'none' : 'inline-flex'` logic for the open (`MenuIcon`) button and `display: open ? 'inline-flex' : 'none'` for the close (`ChevronLeftIcon`) button to ensure only one is visible at a time, resolving the overlap issue.
 *   [2025-05-02 03:07:36] - Adjusted `CollapsibleSidebar`: Wrapped component in a Box with `minHeight: '100vh'` for full height and changed toggle button position to `fixed` to prevent overlap when collapsed. Fixed syntax errors from previous diff attempts.
 *   [2025-05-02 03:04:56] - Created basic CollapsibleSidebar component and story using MUI Drawer (`ag-grid-react-app/src/components/CollapsibleSidebar/`).
+*   [2025-05-04 14:11:00] - Created static Chatbot component (`Chatbot.tsx`) and Storybook story (`Chatbot.stories.tsx`) in `ag-grid-react-app/src/components/Chatbot/` using `@assistant-ui/react` primitives. Installed dependency.
+*   [2025-05-04 14:16:25] - Updated `Chatbot.tsx` static mock with inline styles resembling ChatGPT light theme. Removed `@assistant-ui/react` primitives due to Storybook context issues and simplified Storybook story (`Chatbot.stories.tsx`) by removing the runtime provider decorator.
 ## Open Questions/Issues
 
 *

@@ -4,6 +4,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Match Notion's typical font stack */
   background-color: #2e2e2e; /* Dark background */
   color: #ffffff !important; /* Default text color to white - Added !important */
+  min-width: 300px; /* Ensure minimum width to prevent scrollbar with nowrap values */
 }
 
 .title {
@@ -34,7 +35,7 @@
 
 .propertyLabel {
   font-size: 0.875rem; /* 14px */
-  color: rgba(255, 255, 255, 0.7) !important; /* Lighter gray for label - Added !important */
+  /* color: rgba(255, 255, 255, 0.7) !important; */ /* Removed color rule, controlled by sx prop now */
   line-height: 1.4;
   /* margin-bottom: 2px; Removed, spacing handled by line-height and item padding */
   white-space: nowrap; /* Prevent label wrapping */
@@ -49,8 +50,7 @@
   font-size: 0.875rem; /* 14px */
   color: #ffffff !important; /* White for value - Added !important */
   line-height: 1.4;
-  white-space: pre-wrap; /* Allow wrapping for long values like description */
-  word-break: break-word; /* Break long words */
+  white-space: nowrap; /* Prevent wrapping */
   flex-grow: 1; /* Allow value to take remaining space */
   cursor: pointer; /* Indicate it's clickable for editing */
 }

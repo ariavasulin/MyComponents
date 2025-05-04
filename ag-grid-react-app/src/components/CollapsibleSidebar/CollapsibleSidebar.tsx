@@ -12,14 +12,20 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import MenuIcon from '@mui/icons-material/Menu';
+// Remove unused icons
+// import InboxIcon from '@mui/icons-material/MoveToInbox';
+// import MailIcon from '@mui/icons-material/Mail';
+// import StarBorder from '@mui/icons-material/StarBorder';
+import MenuIcon from '@mui/icons-material/Menu'; // Keep for toggle button
 // Imports for nesting
-import Collapse from '@mui/material/Collapse';
+import Collapse from '@mui/material/Collapse'; // Import Collapse
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder'; // Example icon for nested item
+// Import new icons
+import SettingsIcon from '@mui/icons-material/Settings';     // Gear icon for Asset Manager
+import TaskAltIcon from '@mui/icons-material/TaskAlt';       // For Tasks
+import BuildIcon from '@mui/icons-material/Build';           // Tool icon for Assets
+import StorefrontIcon from '@mui/icons-material/Storefront'; // For Vendors
 
 const drawerWidth = 240;
 
@@ -64,13 +70,26 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     flexShrink: 0,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
+    // Base styles for the paper inside the drawer
+    '& .MuiDrawer-paper': {
+      backgroundColor: '#3a3a3a', // Set background color
+      color: 'white', // Set default text color
+    },
     ...(open && {
       ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme),
+      '& .MuiDrawer-paper': {
+        ...openedMixin(theme),
+        backgroundColor: '#3a3a3a', // Ensure background persists when open
+        color: 'white', // Ensure text color persists when open
+      },
     }),
     ...(!open && {
       ...closedMixin(theme),
-      '& .MuiDrawer-paper': closedMixin(theme),
+      '& .MuiDrawer-paper': {
+        ...closedMixin(theme),
+        backgroundColor: '#3a3a3a', // Ensure background persists when closed
+        color: 'white', // Ensure text color persists when closed
+      },
     }),
   }),
 );
@@ -81,27 +100,18 @@ interface MenuItem {
     children?: MenuItem[] | null;
 }
 
-// Sample Menu Data Structure with nesting
+// Updated Menu Data Structure
 const menuItems: MenuItem[] = [
-  { text: 'Inbox', icon: <InboxIcon />, children: null },
-  { text: 'Starred', icon: <StarBorder />, children: null },
   {
-    text: 'Mail Features',
-    icon: <MailIcon />,
+    text: 'Asset Manager',
+    icon: <SettingsIcon />, // Changed icon
     children: [
-      { text: 'Send email', icon: <MailIcon />, children: null },
-      { text: 'Drafts', icon: <MailIcon />, children: null },
+      { text: 'Tasks', icon: <TaskAltIcon />, children: null },
+      { text: 'Assets', icon: <BuildIcon />, children: null }, // Changed icon
+      { text: 'Vendors', icon: <StorefrontIcon />, children: null },
     ],
   },
-  { text: 'Spam', icon: <InboxIcon />, children: null },
-  {
-      text: 'More Options',
-      icon: <MenuIcon />,
-      children: [
-        { text: 'Trash', icon: <InboxIcon />, children: null },
-        { text: 'All mail', icon: <InboxIcon />, children: null },
-      ],
-    },
+  // Add other top-level items here if needed in the future
 ];
 
 
@@ -115,14 +125,12 @@ interface CollapsibleSidebarProps {
 export const CollapsibleSidebar: React.FC<CollapsibleSidebarProps> = ({ children }) => {
   const theme = useTheme();
   const [open, setOpen] = useState(true); // Sidebar open/closed state
-  const [openNested, setOpenNested] = useState<{ [key: string]: boolean }>({}); // Nested items open/closed state
+  // Initialize with 'Asset Manager' open by default
+  const [openNested, setOpenNested] = useState<{ [key: string]: boolean }>({'Asset Manager': true});
 
   const handleToggleDrawer = () => {
     setOpen(!open);
-    // Optionally close all nested items when sidebar closes
-    if (open) {
-        setOpenNested({});
-    }
+    // Removed logic that reset openNested state on sidebar close
   };
 
   const handleNestedClick = (itemText: string) => {
@@ -150,16 +158,18 @@ export const CollapsibleSidebar: React.FC<CollapsibleSidebarProps> = ({ children
                 minWidth: 0,
                 mr: open ? 3 : 'auto',
                 justifyContent: 'center',
+                color: 'white', // Set icon color
               }}
             >
+              {/* Render icon directly, color inherited from ListItemIcon */}
               {item.icon}
             </ListItemIcon>
             <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
             {/* Show expand icons only if item has children and sidebar is open */}
-            {open && item.children && (openNested[item.text] ? <ExpandLess /> : <ExpandMore />)}
+            {open && item.children && (openNested[item.text] ? <ExpandLess sx={{ color: 'white' }} /> : <ExpandMore sx={{ color: 'white' }} />)}
           </ListItemButton>
         </ListItem>
-        {/* Render nested items if they exist */}
+        {/* Render nested items with text when open */}
         {item.children && (
           <Collapse in={open && openNested[item.text]} timeout="auto" unmountOnExit>
             {/* Render children recursively, increasing level for indentation */}
@@ -168,7 +178,8 @@ export const CollapsibleSidebar: React.FC<CollapsibleSidebarProps> = ({ children
                {item.children.map(child => (
                  <ListItem key={child.text} disablePadding sx={{ display: 'block' }}>
                    <ListItemButton sx={{ pl: 4, minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
-                     <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
+                     <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', color: 'white' }}>
+                       {/* Render icon directly, color inherited from ListItemIcon */}
                        {child.icon}
                      </ListItemIcon>
                      <ListItemText primary={child.text} sx={{ opacity: open ? 1 : 0 }} />
@@ -192,7 +203,7 @@ export const CollapsibleSidebar: React.FC<CollapsibleSidebarProps> = ({ children
         {/* Pass open prop to DrawerHeader for conditional styling */}
         <DrawerHeader open={open}>
           {/* Consolidate toggle logic into this single IconButton */}
-          <IconButton onClick={handleToggleDrawer}>
+          <IconButton onClick={handleToggleDrawer} sx={{ color: 'white' }}>
             {/* Show MenuIcon when closed, Chevron when open */}
             {open ? (theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />) : <MenuIcon />}
           </IconButton>

@@ -106,11 +106,11 @@ export const NotionPropertiesSidebar: React.FC<NotionPropertiesSidebarProps> = (
       sx={{
         backgroundColor: '#2e2e2e', // Ensure background color is applied directly
         color: '#ffffff', // Set default text color for the container
-        width: 300,
+        // width: 300, // Removed fixed width, rely on min-width from CSS module
         paddingX: 2, // Horizontal padding
         paddingTop: 2, // Top padding
         height: '100%',
-        borderRight: '1px solid rgba(255, 255, 255, 0.12)', // Adjusted border for dark theme
+        // borderRight: '1px solid rgba(255, 255, 255, 0.12)', // Removed borderRight
         display: 'flex',
         flexDirection: 'column',
       }}
@@ -133,7 +133,7 @@ export const NotionPropertiesSidebar: React.FC<NotionPropertiesSidebarProps> = (
                </ListItemIcon>
              )}
              <Box sx={{ display: 'flex', width: '100%', alignItems: 'flex-start' }}>
-               <Typography variant="body2" className={styles.propertyLabel} sx={{ color: 'rgba(255, 255, 255, 0.7)' }}> {/* Added sx color */}
+               <Typography variant="body2" className={styles.propertyLabel} sx={{ color: 'white' }}> {/* Changed color to white */}
                  {prop.label}
                </Typography>
                {/* Conditional Rendering: Show TextField or static value */}

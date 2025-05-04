@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@ag-grid-community/client-side-row-model": "^32.3.5",
+    "@assistant-ui/react": "^0.10.5",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mdxeditor/editor": "^3.31.1",

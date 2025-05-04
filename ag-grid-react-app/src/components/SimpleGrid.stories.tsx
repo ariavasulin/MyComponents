@@ -59,78 +59,21 @@ type Story = StoryObj<typeof meta>;
 
 // Story with logic for adding data from the pinned bottom row
 export const Default: Story = {
+  // Simplified render function, removing redundant state and context menu logic
   render: (args) => {
-    const [localRowData, setLocalRowData] = useState<IRow[]>(args.rowData || []);
-    // Removed useState for localPinnedBottomRowData
-    const gridApiRef = useRef<GridApi<IRow> | null>(null); // Specify IRow type for GridApi
-    const [contextMenu, setContextMenu] = useState<{
-      mouseX: number;
-      mouseY: number;
-    } | null>(null);
-
-    const onGridReady = useCallback((params: GridReadyEvent) => {
-      gridApiRef.current = params.api;
-    }, []);
-
-    // Restore handleContextMenu
-    const handleContextMenu = useCallback((event: CellContextMenuEvent) => {
-      const nativeEvent = event.event; // Extract native event
-      if (nativeEvent && nativeEvent instanceof MouseEvent) {
-        nativeEvent.preventDefault();
-        // nativeEvent.stopPropagation(); // Optional: Stop propagation if needed
-
-        setContextMenu(
-          contextMenu === null
-            ? {
-                mouseX: nativeEvent.clientX + 2, // Use clientX/Y from the MouseEvent
-                mouseY: nativeEvent.clientY - 6, // Adjust slightly if needed
-              }
-            : // Repeated contextmenu when it is already open closes it with Chrome 84 on Ubuntu
-              // Other browsers present the menu positioning correctly even without the condition
-              null,
-        );
-      }
-    }, [contextMenu]); // Add contextMenu to dependency array
-
-    const handleClose = () => {
-      setContextMenu(null);
-    };
-
-    // Remove handleGetContextMenuItems
-
-    // Removed onCellEditingStopped callback
-
-    // Removed handleAddRow function
-
+    // SimpleGrid now manages its own context menu and state based on props
+    // Wrap SimpleGrid in a div with explicit dimensions for rendering
     return (
-      <div>
-        {/* Removed Add Row Below button */}
+      <div style={{ height: '500px', width: '600px' }}>
         <SimpleGrid
-          rowData={localRowData}
-          // pinnedBottomRowData prop removed
+          // Pass props directly from Storybook args
+          rowData={args.rowData}
           colDefs={args.colDefs}
           defaultColDef={args.defaultColDef}
-          onGridReady={onGridReady}
-          // onCellEditingStopped prop removed
-          // rowDragManaged is handled internally by SimpleGrid
-          rowSelection={args.rowSelection} // Pass rowSelection from args
-          // onCellContextMenu={handleContextMenu} // REMOVED: Prop doesn't exist on SimpleGrid
-          // getContextMenuItems={handleGetContextMenuItems} // Remove new handler
+          rowSelection={args.rowSelection}
+          // onGridReady can be passed if needed for external interaction, but not required for basic rendering
+          // onGridReady={args.onGridReady}
         />
-        <MuiMenu
-          open={contextMenu !== null}
-          onClose={handleClose}
-          anchorReference="anchorPosition"
-          anchorPosition={
-            contextMenu !== null
-              ? { top: contextMenu.mouseY, left: contextMenu.mouseX }
-              : undefined
-          }
-        >
-          <MenuItem onClick={() => { console.log('Add Row Below clicked'); handleClose(); }}>Add Row Below</MenuItem>
-          <MenuItem onClick={() => { console.log('Delete Selected clicked'); handleClose(); }}>Delete Selected</MenuItem>
-          <MenuItem onClick={() => { console.log('Copy Selected clicked'); handleClose(); }}>Copy Selected</MenuItem>
-        </MuiMenu>
       </div>
     );
   },

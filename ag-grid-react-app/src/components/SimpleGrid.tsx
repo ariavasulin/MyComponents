@@ -15,7 +15,7 @@ export interface IRow { // Export the interface
 }
 
 // Define props interface
-interface SimpleGridProps {
+export interface SimpleGridProps { // Added export
     rowData?: IRow[];
     colDefs?: ColDef[];
     defaultColDef?: ColDef;
@@ -157,7 +157,7 @@ const SimpleGrid: React.FC<SimpleGridProps> = ({
         // wrapping container with theme & size
         <div
          className="ag-theme-quartz" // applying the grid theme
-         style={{ height: 500, width: 600 }} // the grid will fill the size of the parent container
+         style={{ height: 500, width: '100%' }} // Changed width to 100%
         >
             <AgGridReact<IRow>
                 rowData={rowData} // Use prop
