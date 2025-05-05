@@ -3,6 +3,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { ModuleRegistry, AllCommunityModule, ColDef, GridReadyEvent, CellContextMenuEvent, GridApi, IRowNode } from 'ag-grid-community'; // Added IRowNode
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import './scrollbar-custom.css'; // Import custom scrollbar styles
 
 // Register AG Grid modules
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -21,6 +22,7 @@ export interface SimpleGridProps { // Added export
     defaultColDef?: ColDef;
     onGridReady?: (params: GridReadyEvent<IRow>) => void; // Add prop for grid ready event, specify IRow type
     rowSelection: 'singleRow' | 'multiRow'; // CORRECTED: Use AG Grid values, make required
+    height?: number | string; // Add height prop to control the grid height
     // Note: onCellContextMenu is handled internally now
 }
 
@@ -36,6 +38,7 @@ const SimpleGrid: React.FC<SimpleGridProps> = ({
     defaultColDef = {}, // Default to empty object if not provided
     onGridReady: onGridReadyProp, // Rename incoming prop to avoid conflict
     rowSelection = 'multiRow', // CORRECTED: Provide default value
+    height = 500, // Default height if not provided
 }) => {
     const gridApiRef = useRef<GridApi<IRow> | null>(null); // Ref to store gridApi
     const [contextMenu, setContextMenu] = useState<{ mouseX: number; mouseY: number } | null>(null); // State for MUI Menu position
@@ -157,7 +160,7 @@ const SimpleGrid: React.FC<SimpleGridProps> = ({
         // wrapping container with theme & size
         <div
          className="ag-theme-quartz" // applying the grid theme
-         style={{ height: 500, width: '100%' }} // Changed width to 100%
+         style={{ height: height, width: '100%' }} // Use the height prop
         >
             <AgGridReact<IRow>
                 rowData={rowData} // Use prop

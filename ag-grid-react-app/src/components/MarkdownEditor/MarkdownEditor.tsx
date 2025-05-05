@@ -17,6 +17,7 @@ import {
   ListsToggle,
 } from '@mdxeditor/editor';
 import '@mdxeditor/editor/style.css';
+import '../scrollbar-custom.css'; // Import custom scrollbar styles
 
 interface MarkdownEditorProps {
   /**

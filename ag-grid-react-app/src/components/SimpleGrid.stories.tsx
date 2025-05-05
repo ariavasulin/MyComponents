@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ColDef, GridReadyEvent, GridApi, CellContextMenuEvent } from 'ag-grid-community'; // Revert imports: Add back CellContextMenuEvent, remove GetContextMenuItemsParams, MenuItemDef
 import { Menu as MuiMenu, MenuItem } from '@mui/material'; // Import MUI Menu and MenuItem
 import SimpleGrid, { IRow } from './SimpleGrid'; // Import IRow from SimpleGrid
+import './scrollbar-custom.css'; // Import custom scrollbar styles
 
 // Removed local IRow definition, using the one imported from SimpleGrid.tsx
 // Define default data and configurations matching the original component state

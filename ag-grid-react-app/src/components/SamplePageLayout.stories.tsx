@@ -1,12 +1,23 @@
 import React, { useState } from 'react'; // Import useState
 import type { Meta, StoryObj } from '@storybook/react';
 import { Typography, Box } from '@mui/material'; // Import Box
+import './markdown-editor-custom.css'; // Import custom CSS for markdown editor
+import './scrollbar-custom.css'; // Import custom scrollbar styles
 
 import { Header, HeaderProps } from './Header'; // Assuming HeaderProps is exported from Header.tsx
 import { CollapsibleSidebar } from './CollapsibleSidebar/CollapsibleSidebar';
 import SimpleGrid, { SimpleGridProps } from './SimpleGrid'; // Corrected import and added props import
 import { ColDef } from 'ag-grid-community';
 import { NotionPropertiesSidebar } from './NotionPropertiesSidebar/NotionPropertiesSidebar'; // Import NotionPropertiesSidebar
+import { MarkdownEditor } from './MarkdownEditor/MarkdownEditor'; // Import MarkdownEditor
+
+// Define Property interface for use with NotionPropertiesSidebar
+interface Property {
+  id: string;
+  label: string;
+  value: string | React.ReactNode;
+  icon?: React.ReactNode;
+}
 
 // Define the meta configuration for the story
 const meta: Meta<typeof CollapsibleSidebar> = {
@@ -30,6 +41,67 @@ const meta: Meta<typeof CollapsibleSidebar> = {
 
 export default meta;
 type Story = StoryObj<typeof meta>; // Or StoryObj<typeof CollapsibleSidebar> if preferred
+
+// Mock data for Asset Page
+const assetNotesMockData = `# Asset Notes
+This is a markdown editor for taking notes about this asset.
+
+* Important details
+* Maintenance history
+* Technical specifications
+`;
+
+// Mock data for Contacts grid (reduced to 3 rows)
+const contactsMockData = [
+  { make: 'John', model: 'Doe', price: 555123456 },
+  { make: 'Jane', model: 'Smith', price: 555987654 },
+  { make: 'Bob', model: 'Johnson', price: 555246810 },
+  { make: 'John', model: 'Doe', price: 555123456 },
+  { make: 'Jane', model: 'Smith', price: 555987654 },
+  { make: 'Bob', model: 'Johnson', price: 555246810 },
+  
+];
+
+// Mock column definitions for Contacts grid
+const contactsColDefs: ColDef[] = [
+  { field: 'make', headerName: 'First Name', filter: true, sortable: true, flex: 1 },
+  { field: 'model', headerName: 'Last Name', filter: true, sortable: true, flex: 1 },
+  { field: 'price', headerName: 'Phone', filter: true, sortable: true, flex: 1 },
+];
+
+// Mock data for Maintenance Tasks grid (reduced to 3 rows)
+const maintenanceMockData = [
+  { make: 'Oil Change', model: 'Scheduled', price: 20230515 },
+  { make: 'Filter Replacement', model: 'Completed', price: 20230410 },
+  { make: 'Inspection', model: 'Overdue', price: 20230301 },
+  { make: 'Oil Change', model: 'Scheduled', price: 20230515 },
+  { make: 'Filter Replacement', model: 'Completed', price: 20230410 },
+  { make: 'Inspection', model: 'Overdue', price: 20230301 },
+];
+
+// Mock column definitions for Maintenance Tasks grid
+const maintenanceColDefs: ColDef[] = [
+  { field: 'make', headerName: 'Task', filter: true, sortable: true, flex: 1 },
+  { field: 'model', headerName: 'Status', filter: true, sortable: true, flex: 1 },
+  { field: 'price', headerName: 'Due Date', filter: true, sortable: true, flex: 1 },
+];
+
+
+// Mock property data for asset details sidebar
+const assetDetailProps: Property[] = [
+  { id: 'type', label: 'Asset Type', value: 'Vehicle', icon: '🚗' },
+  { id: 'id', label: 'Asset ID', value: 'AST-2023-V001', icon: '🔢' },
+  { id: 'status', label: 'Status', value: 'Active', icon: '✅' },
+  { id: 'location', label: 'Location', value: 'Main Garage', icon: '📍' },
+];
+
+// Mock property data for asset specs sidebar
+const assetSpecsProps: Property[] = [
+  { id: 'make', label: 'Make', value: 'Toyota', icon: '🏭' },
+  { id: 'model', label: 'Model', value: 'Camry', icon: '📋' },
+  { id: 'year', label: 'Year', value: '2022', icon: '📅' },
+  { id: 'mileage', label: 'Mileage', value: '15,230', icon: '🔄' },
+];
 
 // Define the story for the logged-in state
 export const LoggedIn: Story = {
@@ -155,3 +227,106 @@ export const WithSimpleGrid: Story = {
 //   },
 //   args: {},
 // };
+
+// Asset Page story
+export const AssetPage: Story = {
+  render: (args) => {
+    // Add state for user login status
+    const [user, setUser] = useState<{ name: string } | undefined>({ name: 'Ariav' });
+    
+    // Define login/logout handlers
+    const handleLogin = () => {
+      setUser({ name: 'Ariav' });
+      console.log('Login clicked');
+    };
+    const handleLogout = () => {
+      setUser(undefined);
+      console.log('Logout clicked');
+    };
+    
+    // Update Header props to use state and handlers
+    const headerProps: HeaderProps = {
+      user: user,
+      onLogin: handleLogin,
+      onLogout: handleLogout,
+    };
+    
+    // Combine Grid props for Contacts
+    const contactsGridProps: SimpleGridProps = {
+      rowData: contactsMockData,
+      colDefs: contactsColDefs,
+      rowSelection: "multiRow",
+      height: 200, // Set appropriate height
+    };
+    
+    // Combine Grid props for Maintenance Tasks
+    const maintenanceGridProps: SimpleGridProps = {
+      rowData: maintenanceMockData,
+      colDefs: maintenanceColDefs,
+      rowSelection: "multiRow",
+      height: 200, // Set appropriate height
+    };
+    
+    return (
+      <CollapsibleSidebar {...args}>
+        {/* Render the Header */}
+        <Header {...headerProps} />
+        
+        {/* Main content area with vertical stacking */}
+        <Box sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+        <Typography variant="h5" sx={{ mb: 1, color: 'white', fontWeight: 'bold' }}>
+              Properties
+            </Typography>
+          {/* Two Notion Properties Sidebars side by side */}
+          <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+            <Box sx={{ flex: 1, minWidth: 'fit-content' }}>
+              <NotionPropertiesSidebar properties={assetDetailProps} />
+            </Box>
+            <Box sx={{ flex: 1, minWidth: 'fit-content' }}>
+              <NotionPropertiesSidebar properties={assetSpecsProps} />
+            </Box>
+          </Box>
+          
+          {/* Contacts section */}
+          <Box sx={{ mb: 4 }}>
+            <Typography variant="h5" sx={{ mb: 1, color: 'white', fontWeight: 'bold' }}>
+              Contacts
+            </Typography>
+            <Box sx={{ width: '100%' }}>
+              <SimpleGrid {...contactsGridProps} />
+            </Box>
+          </Box>
+          
+          {/* Maintenance Tasks section */}
+          <Box sx={{ mb: 4 }}>
+            <Typography variant="h5" sx={{ mb: 1, color: 'white', fontWeight: 'bold' }}>
+              Maintenance Tasks
+            </Typography>
+            <Box sx={{ width: '100%' }}>
+              <SimpleGrid {...maintenanceGridProps} />
+            </Box>
+          </Box>
+
+          {/* Asset Notes section */}
+          <Box sx={{ mb: 4 }}>
+            <Typography variant="h5" sx={{ mb: 1, color: 'white', fontWeight: 'bold' }}>
+              Asset Notes
+            </Typography>
+            <Box sx={{ height: '400px', bgcolor: '#3a3a3a', borderRadius: 1, overflow: 'auto' }}>
+              <MarkdownEditor
+                markdown={assetNotesMockData}
+                editorProps={{
+                  className: 'white-text-editor'
+                }}
+              />
+            </Box>
+          </Box>
+
+        </Box>
+      </CollapsibleSidebar>
+    );
+  },
+  args: {
+    // Default args for CollapsibleSidebar if any are needed
+  },
+};

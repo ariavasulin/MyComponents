@@ -28,6 +28,7 @@ This file tracks the project's progress using a task list format.
 *   [2025-05-03 02:30:06] - Completed: Created Storybook story `SamplePageLayout.stories.tsx` demonstrating `Header` and `CollapsibleSidebar` layout. Fixed import path error.
 *   [2025-05-04 14:10:49] - Completed: Create Chatbot component (Chatbot.tsx) and Storybook story (Chatbot.stories.tsx) using assistan-ui primitives for static display.
 *   [2025-05-04 14:16:18] - Completed: Updated Chatbot.tsx static mock component with inline styles to resemble ChatGPT light theme.
+*   [2025-05-04 17:28:50] - Completed: Added custom scrollbar styling with color #3a3a3a to SimpleGrid component, MarkdownEditor component, and SamplePageLayout.stories.tsx.
 ## Current Tasks
 
 *   [2025-05-02 02:28:43] - Implement Notion-style properties sidebar (Phase 2: Styling for High Fidelity).

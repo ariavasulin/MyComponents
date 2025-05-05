@@ -32,6 +32,7 @@
 *   [2025-05-02 03:04:56] - Created basic CollapsibleSidebar component and story using MUI Drawer (`ag-grid-react-app/src/components/CollapsibleSidebar/`).
 *   [2025-05-04 14:11:00] - Created static Chatbot component (`Chatbot.tsx`) and Storybook story (`Chatbot.stories.tsx`) in `ag-grid-react-app/src/components/Chatbot/` using `@assistant-ui/react` primitives. Installed dependency.
 *   [2025-05-04 14:16:25] - Updated `Chatbot.tsx` static mock with inline styles resembling ChatGPT light theme. Removed `@assistant-ui/react` primitives due to Storybook context issues and simplified Storybook story (`Chatbot.stories.tsx`) by removing the runtime provider decorator.
+*   [2025-05-04 17:29:57] - Created custom scrollbar styling with color #3a3a3a in a new file `scrollbar-custom.css` and imported it in SimpleGrid component, MarkdownEditor component, and SamplePageLayout.stories.tsx to ensure consistent scrollbar styling when these components overflow.
 ## Open Questions/Issues
 
 *

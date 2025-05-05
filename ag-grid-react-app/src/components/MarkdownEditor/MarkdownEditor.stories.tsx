@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MarkdownEditor } from './MarkdownEditor';
 import { action } from '@storybook/addon-actions';
+import '../scrollbar-custom.css'; // Import custom scrollbar styles
 
 // Helper component to manage state for the story
 const EditorWithState: React.FC<{ initialMarkdown: string }> = ({ initialMarkdown }) => {

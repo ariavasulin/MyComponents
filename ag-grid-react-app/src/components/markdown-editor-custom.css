@@ -1,0 +1,16 @@
+/* Custom styles for the markdown editor */
+.white-text-editor .prose {
+  color: white !important;
+}
+
+/* Make sure all text elements inside the editor are white */
+.white-text-editor p,
+.white-text-editor li,
+.white-text-editor blockquote {
+  color: white !important;
+}
+
+/* Ensure the editor container properly shows scrollbars when content overflows */
+.white-text-editor {
+  overflow: auto;
+}

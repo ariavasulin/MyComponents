@@ -18,20 +18,31 @@ export interface HeaderProps {
 }
 
 export const Header = ({ user, onLogin, onLogout }: HeaderProps) => (
-  <AppBar position="static" sx={{ backgroundColor: '#2e2e2e', boxShadow: 'none' }}>
+  <AppBar position="static" sx={{
+    backgroundColor: '#2e2e2e',
+    boxShadow: 'none',
+    padding: 0,
+    paddingLeft: 0
+  }}>
     <Toolbar sx={{
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '15px 20px', // Use specific px for exact match from header.css
+      padding: '15px 0 15px 0', // Remove horizontal padding
+      paddingLeft: '0', // No left padding
+      paddingRight: '20px', // Keep right padding
       color: 'white', // Default text color for children
       minHeight: 'auto', // Override default minHeight based on padding
       // Ensure padding isn't overridden by default MUI media queries for Toolbar
       '@media (min-width: 0px)': { // Apply to all sizes starting from 0
-         padding: '15px 20px',
+         padding: '15px 0 15px 0',
+         paddingLeft: '0',
+         paddingRight: '20px',
       },
       '@media (min-width: 600px)': { // Explicitly override sm breakpoint default padding
-         padding: '15px 20px',
+         padding: '15px 0 15px 0',
+         paddingLeft: '0',
+         paddingRight: '20px',
          minHeight: 'auto', // Keep minHeight override
       }
       // fontFamily: 'Nunito Sans, Helvetica Neue, Helvetica, Arial, sans-serif', // Add if not globally themed
@@ -42,7 +53,7 @@ export const Header = ({ user, onLogin, onLogout }: HeaderProps) => (
         src={logo}
         alt="Design Workshops Logo"
         sx={{
-          height: '32px', // Match original CSS
+          height: '60px', // Increased by 50% from original 32px
           width: 'auto', // Match original CSS
           display: 'inline-block', // Match original CSS
           verticalAlign: 'top', // Match original CSS

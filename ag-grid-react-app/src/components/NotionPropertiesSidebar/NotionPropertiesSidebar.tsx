@@ -108,7 +108,7 @@ export const NotionPropertiesSidebar: React.FC<NotionPropertiesSidebarProps> = (
         color: '#ffffff', // Set default text color for the container
         // width: 300, // Removed fixed width, rely on min-width from CSS module
         paddingX: 2, // Horizontal padding
-        paddingTop: 2, // Top padding
+        paddingTop: 0, // Top padding
         height: '100%',
         // borderRight: '1px solid rgba(255, 255, 255, 0.12)', // Removed borderRight
         display: 'flex',
@@ -116,9 +116,6 @@ export const NotionPropertiesSidebar: React.FC<NotionPropertiesSidebarProps> = (
       }}
     >
       {/* Removed gutterBottom, margin handled by CSS */}
-      <Typography variant="subtitle1" className={styles.title} sx={{ color: '#ffffff' }}>
-        Properties
-      </Typography>
       {/* Added paddingBottom, removed paddingTop */}
       <List dense className={styles.propertyList} sx={{ flexGrow: 1, overflowY: 'auto', paddingTop: 0, paddingBottom: 2 }}>
         {properties.map((prop) => (

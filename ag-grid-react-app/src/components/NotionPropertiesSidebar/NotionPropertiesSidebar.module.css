@@ -11,7 +11,7 @@
   font-weight: 600; /* Semibold */
   font-size: 0.875rem; /* 14px */
   color: #ffffff !important; /* White title - Added !important */
-  margin-bottom: 16px; /* Spacing below title - Kept for space between title and list */
+  margin-bottom: 0px; /* Spacing below title - Kept for space between title and list */
 }
 
 .propertyList {
